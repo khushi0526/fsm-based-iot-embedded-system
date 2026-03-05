@@ -46,4 +46,4 @@ To read light intensity using an LDR sensor and process the analog value using t
 
 ## ▶ Simulation
 
-((https://wokwi.com/projects/457624754551313409))
+(https://wokwi.com/projects/457624754551313409)
