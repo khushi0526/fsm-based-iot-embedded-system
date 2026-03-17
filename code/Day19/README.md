@@ -1,18 +1,18 @@
-# Day 19 – Smart Dustbin (Automatic Lid)
+# Day 19 – Smart Dustbin using Ultrasonic Sensor and Servo Motor (Arduino UNO)
 
 ## 📌 Objective
 
-To design a smart dustbin that automatically opens its lid when a person brings their hand near the sensor using ESP32 and an ultrasonic sensor.
+To design an application-level project that automatically opens and closes a dustbin lid using an ultrasonic sensor and a servo motor when a user’s hand is detected nearby.
 
 ---
 
 ## 🛠 Hardware Used
 
-ESP32
-HC-SR04 Ultrasonic Sensor
-SG90 Servo Motor
-Breadboard
-Jumper Wires
+* Arduino UNO
+* HC-SR04 Ultrasonic Sensor
+* SG90 Servo Motor
+* Breadboard
+* Jumper Wires
 
 ---
 
@@ -22,40 +22,58 @@ Jumper Wires
 
 VCC → 5V
 GND → GND
-TRIG → GPIO 5
-ECHO → GPIO 18
+TRIG → D9
+ECHO → D10
 
 ### Servo Motor
 
-VCC → 5V
-GND → GND
-Signal → GPIO 4
+Red → 5V
+Brown → GND
+Orange → D6
 
 ---
 
 ## ⚙ Working Principle
 
-The ultrasonic sensor continuously measures the distance of nearby objects.
+This project works as a **touchless smart dustbin system**.
 
-1. The sensor sends ultrasonic waves.
-2. If a hand comes close to the sensor (distance < 20 cm), the ESP32 detects it.
-3. The ESP32 sends a signal to the servo motor.
-4. The servo rotates to 90° to open the dustbin lid.
-5. After a few seconds, the servo returns to 0° and closes the lid.
+1. The ultrasonic sensor continuously measures the distance.
+2. When a hand/object comes within 20 cm:
 
-This simulates a real-world smart hygiene system used in public places and smart homes.
+   * The sensor detects the object.
+3. The Arduino processes this input and sends a signal to the servo motor.
+4. The servo motor rotates to 90° → opening the lid.
+5. After 3 seconds, the servo returns to 0° → closing the lid.
+
+This enables **hygienic and contactless waste disposal**.
 
 ---
 
 ## 🧠 Concepts Learned
 
-Ultrasonic distance sensing
-Servo motor control
-Automation using sensors
-Smart home embedded applications
+* Ultrasonic sensor interfacing
+* Distance measurement using sound waves
+* Servo motor control using PWM
+* Conditional logic (if statements)
+* Real-time automation system design
+
+---
+
+## 🚀 Application
+
+* Smart homes
+* Public sanitation systems
+* Hospitals (hygiene critical areas)
+* IoT-based waste management systems
 
 ---
 
 ## ▶ Simulation
 
-(Add your Wokwi simulation link here)
+https://wokwi.com/projects/458746800187394049
+
+---
+
+## 🎯 Outcome
+
+A fully functional **automatic dustbin system** that improves hygiene by eliminating the need for physical contact.
