@@ -1,25 +1,21 @@
 #include <Servo.h>
-const int trigPin = 5;
-const int echoPin = 18;
-const int servoPin = 4;
-
+Servo myServo;
+const int trigPin = 9;
+const int echoPin = 10;
+const int servoPin = 6;
 long duration;
 float distance;
 
-Servo dustbinServo;
-
 void setup() {
-  Serial.begin(115200);
-
+  Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
-  dustbinServo.attach(servoPin);
-  dustbinServo.write(0); // lid closed
+  myServo.attach(servoPin);
+  myServo.write(0); // lid closed
 }
 
 void loop() {
-
+  // Trigger ultrasonic
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
 
@@ -27,19 +23,27 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
+  // Read echo
   duration = pulseIn(echoPin, HIGH);
 
+  // Calculate distance
   distance = duration * 0.034 / 2;
 
   Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" cm");
+  Serial.println(distance);
 
-  if(distance < 20){
-    dustbinServo.write(90);   // open lid
-    delay(3000);              // keep open for 3 sec
-    dustbinServo.write(0);    // close lid
+  // If object detected
+  if (distance > 0 && distance < 20) {
+
+    Serial.println("Opening Lid");
+
+    myServo.write(90); // open
+    delay(3000);
+
+    Serial.println("Closing Lid");
+
+    myServo.write(0); // close
   }
 
-  delay(300);
+  delay(200);
 }
