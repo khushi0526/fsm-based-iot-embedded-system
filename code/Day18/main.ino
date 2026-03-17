@@ -25,7 +25,6 @@ void loop() {
   digitalWrite(trigPin, LOW);
 
   duration = pulseIn(echoPin, HIGH);
-
   distance = duration * 0.034 / 2;
 
   Serial.print("Distance: ");
@@ -36,16 +35,13 @@ void loop() {
     digitalWrite(ledPin, LOW);
     digitalWrite(buzzerPin, LOW);
   }
-
   else if(distance <= 40 && distance > 20){
     digitalWrite(ledPin, HIGH);
     digitalWrite(buzzerPin, LOW);
   }
-
   else if(distance <= 20){
     digitalWrite(ledPin, HIGH);
     digitalWrite(buzzerPin, HIGH);
   }
-
   delay(300);
 }
