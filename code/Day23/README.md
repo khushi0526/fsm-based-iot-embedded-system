@@ -58,7 +58,7 @@ SCL → GPIO 22
 
 ## ▶ Simulation
 
-Day10_WiFi_IoT_Sensor_Node
+https://wokwi.com/projects/459025457898254337
 
 ---
 
