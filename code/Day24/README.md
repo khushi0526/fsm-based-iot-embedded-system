@@ -1,8 +1,8 @@
-# Day 24 – Smart Glass Alert System (ESP32 + Buzzer/Vibration)
+# Alert System (ESP32 + Buzzer/Vibration)
 
 ## 📌 Objective
 
-To enhance the smart glass system by adding an alert mechanism (buzzer or vibration motor) based on obstacle distance.
+To enhance the system by adding an alert mechanism (buzzer or vibration motor) based on obstacle distance.
 
 ---
 
@@ -69,4 +69,4 @@ https://wokwi.com/projects/459098773480531969
 
 ## 🎯 Outcome
 
-A smart assistive system that provides **audio/vibration feedback**, helping users detect obstacles without visual input.
+A system that provides **audio/vibration feedback**, helping users detect obstacles without visual input.
