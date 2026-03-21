@@ -8,46 +8,58 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void setup() {
-  Serial.begin(115200);
-  Serial.println("System Starting...");
-
-  // Initialize I2C (IMPORTANT for ESP32)
+  // Initialize I2C for ESP32
   Wire.begin(21, 22);
 
   // Initialize OLED
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
-    Serial.println("OLED NOT FOUND");
-    while (true);
-  }
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
-  Serial.println("OLED Initialized");
-
+  // Clear screen
   display.clearDisplay();
-  display.setTextColor(WHITE);
 
-  // Show startup message
+  // Display text
   display.setTextSize(2);
-  display.setCursor(10, 20);
+  display.setTextColor(WHITE);
+  display.setCursor(20, 20);
   display.println("HELLO");
-  display.display();
 
-  delay(2000);
+  display.display();
 }
 
 void loop() {
-  Serial.println("Loop Running...");
-
   display.clearDisplay();
 
   display.setTextSize(1);
   display.setCursor(0, 0);
-  display.println("ESP32 System");
+  display.println("ESP32");
 
   display.setTextSize(2);
   display.setCursor(0, 20);
-  display.println("Working");
+  display.println("WORKING");
 
   display.display();
 
   delay(1000);
 }
+
+
+
+//Simple Code
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+
+Adafruit_SSD1306 display(128, 64, &Wire, -1);
+
+void setup() {
+  Wire.begin(21, 22);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(10, 20);
+  display.println("HELLO");
+  display.display();
+}
+
+void loop() {}
