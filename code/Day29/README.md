@@ -79,7 +79,7 @@ GPIO 18 → Buzzer → GND
 
 ## ▶ Simulation
 
-(Add your Wokwi link here)
+https://wokwi.com/projects/459218993883541505
 
 ---
 
