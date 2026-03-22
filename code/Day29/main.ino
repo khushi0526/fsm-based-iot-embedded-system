@@ -4,35 +4,57 @@
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+// Buttons
 const int nextBtn = 4;
 const int selectBtn = 5;
+// Outputs
 const int ledPin = 2;
-const int buzzerPin = 18;
+const int buzzerPin = 19;
+// Menu variable
 int menu = 0;
+// Button states
 int lastNext = HIGH;
 int lastSelect = HIGH;
 
 void setup() {
   Serial.begin(115200);
+
   pinMode(nextBtn, INPUT_PULLUP);
   pinMode(selectBtn, INPUT_PULLUP);
+
   pinMode(ledPin, OUTPUT);
   pinMode(buzzerPin, OUTPUT);
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+
+  Wire.begin(21, 22);  // ESP32 I2C pins
+
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED NOT FOUND");
+    while (true);
+  }
+
   display.clearDisplay();
+  display.setTextColor(WHITE);   // IMPORTANT FIX
+  display.setTextSize(1);
+  display.setTextWrap(false);
 }
 
 void loop() {
+
   int nextState = digitalRead(nextBtn);
   int selectState = digitalRead(selectBtn);
+
   // NEXT button
   if (nextState == LOW && lastNext == HIGH) {
+    Serial.println("NEXT");
     menu++;
     if (menu > 2) menu = 0;
     delay(200);
   }
+
   // SELECT button
   if (selectState == LOW && lastSelect == HIGH) {
+    Serial.println("SELECT");
+
     if (menu == 0) {
       digitalWrite(ledPin, HIGH);
       digitalWrite(buzzerPin, LOW);
@@ -45,16 +67,16 @@ void loop() {
       digitalWrite(ledPin, HIGH);
       digitalWrite(buzzerPin, HIGH);
     }
+
     delay(200);
   }
 
   lastNext = nextState;
   lastSelect = selectState;
 
-  // DISPLAY MENU
+  // -------- OLED DISPLAY --------
   display.clearDisplay();
 
-  display.setTextSize(1);
   display.setCursor(0, 0);
   display.println("MENU");
 
